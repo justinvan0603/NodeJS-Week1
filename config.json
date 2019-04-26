@@ -1,0 +1,10 @@
+{
+    "db":{
+        "host": "mongodb://localhost",
+        "port":"27017",
+        "dbname": "node_tryout"
+    },
+    "mongo_atlas":{
+        "connectionString": "mongodb+srv://jtvan:thang861451@cluster-nodetryout-u8yid.mongodb.net/nodetryout?retryWrites=true"
+    }
+}
