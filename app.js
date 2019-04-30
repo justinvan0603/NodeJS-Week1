@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 //Load configurations
 var configurations = require('./config.json');
 
@@ -10,18 +11,46 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var studyRouter = require('./routes/studyservice');
 var app = express();
-
+//const swaggerDocument = require('./swagger.json');
+const expressSwagger = require('express-swagger-generator')(app);
+let options = {
+  swaggerDefinition: {
+      info: {
+          description: 'This is a sample server',
+          title: 'Swagger',
+          version: '1.0.0',
+      },
+      host: 'localhost:3000',
+      basePath: '/v1',
+      produces: [
+          "application/json",
+          "application/xml"
+      ],
+      schemes: ['http', 'https'],
+      securityDefinitions: {
+          JWT: {
+              type: 'apiKey',
+              in: 'header',
+              name: 'Authorization',
+              description: "",
+          }
+      }
+  },
+  basedir: __dirname, //app absolute path
+  files: ['./routes/**/*.js'] //Path to the API handle folder
+};
+expressSwagger(options);
 //Init MongoDB connection
-var db = require('mongoose');
-db.Promise = global.Promise;
-db.connect(configurations.mongo_atlas.connectionString, {useNewUrlParser: true})
-  .then(()=>{
-    console.log("Database connected");
-})
-  .catch(err => {
-    console.log("Failed to connect to database");
-    process.exit();
-  });
+// var db = require('mongoose');
+// db.Promise = global.Promise;
+// db.connect(configurations.mongo_atlas.connectionString, {useNewUrlParser: true})
+//   .then(()=>{
+//     console.log("Database connected");
+// })
+//   .catch(err => {
+//     console.log("Failed to connect to database");
+//     process.exit();
+//   });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +65,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/study',studyRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
