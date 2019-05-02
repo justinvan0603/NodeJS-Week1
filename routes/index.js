@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var cryptor = require('../cryptor/cryptor');
+var passport = require("passport");
 /* GET home page. */
 /**
  * This function comment is parsed by doctrine
@@ -31,7 +32,10 @@ router.get('/', function(req, res, next) {
   // // var decryptedStr = crypto.privateDecrypt({key:privatekey,padding: crypto.constants.RSA_PKCS1_PADDING},decryptbuff);
   // // console.log("String after decrypt with private key: " + decryptedStr.toString("utf8") + "\n");
   // res.send("Encrypted: " + cryptor.encryptWithRSAPublicKey(pw) + "- Decrypted: " + cryptor.decryptWithRSAPrivateKey(encrypted));
-  console.log(req.user);
+  if(req.isAuthenticated()){
+    console.log("Authenticated");
+    console.log(req.user);
+  }
   res.render('index', { title: 'Express' });
 });
 module.exports = router;
