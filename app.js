@@ -75,7 +75,7 @@ var GOOGLE_CLIENT_ID      = "391534551840-qi2p9he2al8i7ehvt5jid2b72paq4qkg.apps.
 passport.use(new GoogleStrategy({
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: "https://week-1-demo.herokuapp.com/auth/google/callback"
+  callbackURL: "https://week-1-demo.herokuapp.com/login/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
        return done(null, user);
