@@ -86,7 +86,7 @@ passport.use(new GoogleStrategy({
   callbackURL: "https://week-1-demo.herokuapp.com/login/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
-  return done(null,profile.User);
+  return done(null,profile);
 
 }
 ));
