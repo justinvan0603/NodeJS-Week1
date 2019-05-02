@@ -10,6 +10,8 @@ var configurations = require('./config.json');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var studyRouter = require('./routes/studyservice');
+
+var studyApiRouter = require('./routes/api/study');
 var app = express();
 //const swaggerDocument = require('./swagger.json');
 const expressSwagger = require('express-swagger-generator')(app);
@@ -56,6 +58,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/study',studyRouter);
+
+//app.use('/api/study',studyApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
