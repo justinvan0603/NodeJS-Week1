@@ -31,6 +31,7 @@ router.get('/', function(req, res, next) {
   // // var decryptedStr = crypto.privateDecrypt({key:privatekey,padding: crypto.constants.RSA_PKCS1_PADDING},decryptbuff);
   // // console.log("String after decrypt with private key: " + decryptedStr.toString("utf8") + "\n");
   // res.send("Encrypted: " + cryptor.encryptWithRSAPublicKey(pw) + "- Decrypted: " + cryptor.decryptWithRSAPrivateKey(encrypted));
+  console.log(req.user);
   res.render('index', { title: 'Express' });
 });
 module.exports = router;
