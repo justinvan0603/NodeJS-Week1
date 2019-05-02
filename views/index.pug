@@ -1,5 +1,14 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html(lang='en')
+  head
+    title Jade
+    script(type='text/javascript').
+      const foo = true;
+      let bar = function() {};
+      if (foo) {
+      bar(1 + 5)
+      }
+  body
+    h1 Jade - node template engine
+    #container.col
+a(href='login/auth/google') Login with Google

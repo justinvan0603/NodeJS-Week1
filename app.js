@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var passport = require("passport");
+var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+
 //Load configurations
 var configurations = require('./config.json');
 
@@ -12,6 +15,8 @@ var usersRouter = require('./routes/users');
 var studyRouter = require('./routes/studyservice');
 
 var studyApiRouter = require('./routes/api/study');
+
+var loginRouter = require('./routes/admin/login');
 var app = express();
 //const swaggerDocument = require('./swagger.json');
 const expressSwagger = require('express-swagger-generator')(app);
@@ -59,7 +64,24 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/study',studyRouter);
 
+app.use('/login',loginRouter);
+
+
+
 //app.use('/api/study',studyApiRouter);
+var GOOGLE_CLIENT_ID      = "391534551840-qi2p9he2al8i7ehvt5jid2b72paq4qkg.apps.googleusercontent.com"
+  , GOOGLE_CLIENT_SECRET  = "xD4pfilb_hhbpDH8ZT5gFciO";
+
+passport.use(new GoogleStrategy({
+  clientID: GOOGLE_CLIENT_ID,
+  clientSecret: GOOGLE_CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+       return done(null, user);
+
+}
+));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
