@@ -59,7 +59,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', indexRouter);
@@ -86,8 +86,7 @@ passport.use(new GoogleStrategy({
   callbackURL: "https://week-1-demo.herokuapp.com/login/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
-  console.log("user profile:" + profile);
-  return done(null,profile.emails);
+  return done(null,profile);
 
 }
 ));
