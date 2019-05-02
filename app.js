@@ -68,7 +68,15 @@ app.use('/study',studyRouter);
 
 app.use('/login',loginRouter);
 
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 //app.use('/api/study',studyApiRouter);
 var GOOGLE_CLIENT_ID      = "391534551840-qi2p9he2al8i7ehvt5jid2b72paq4qkg.apps.googleusercontent.com"
@@ -80,7 +88,7 @@ passport.use(new GoogleStrategy({
   callbackURL: "https://week-1-demo.herokuapp.com/login/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
-  return done(null,JSON.stringify(profile));
+  return done(null,profile.User);
 
 }
 ));
