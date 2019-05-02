@@ -33,7 +33,7 @@ let options = {
   files: ['./routes/**/*.js'] //Path to the API handle folder
 };
 expressSwagger(options);
-Init MongoDB connection
+//Init MongoDB connection
 var db = require('mongoose');
 db.Promise = global.Promise;
 db.connect(configurations.mongo_atlas.connectionString, {useNewUrlParser: true})
