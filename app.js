@@ -33,17 +33,17 @@ let options = {
   files: ['./routes/**/*.js'] //Path to the API handle folder
 };
 expressSwagger(options);
-//Init MongoDB connection
-// var db = require('mongoose');
-// db.Promise = global.Promise;
-// db.connect(configurations.mongo_atlas.connectionString, {useNewUrlParser: true})
-//   .then(()=>{
-//     console.log("Database connected");
-// })
-//   .catch(err => {
-//     console.log("Failed to connect to database");
-//     process.exit();
-//   });
+Init MongoDB connection
+var db = require('mongoose');
+db.Promise = global.Promise;
+db.connect(configurations.mongo_atlas.connectionString, {useNewUrlParser: true})
+  .then(()=>{
+    console.log("Database connected");
+})
+  .catch(err => {
+    console.log("Failed to connect to database");
+    process.exit();
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
