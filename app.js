@@ -69,13 +69,11 @@ app.use('/study',studyRouter);
 app.use('/login',loginRouter);
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
 });
 
 //app.use('/api/study',studyApiRouter);
