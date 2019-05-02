@@ -68,8 +68,8 @@ app.use('/study',studyRouter);
 
 app.use('/login',loginRouter);
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
+passport.serializeUser(function(profile, done) {
+  done(null, profile);
 });
 
 passport.deserializeUser(function(obj, done) {
@@ -86,7 +86,7 @@ passport.use(new GoogleStrategy({
   callbackURL: "https://week-1-demo.herokuapp.com/login/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
-  return done(null,profile);
+  return done(null,profile.emails);
 
 }
 ));
