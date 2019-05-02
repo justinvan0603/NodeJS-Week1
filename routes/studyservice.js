@@ -37,6 +37,7 @@ router.post('/',function(req,res){
     Study.create({name: req.body.name, description: req.body.description, researchers: listResearchers}).then(rs =>{
         console.log(rs);
         res.status(200);
+        res.send("Done!");
     }).catch(err=>{
         console.log(err);
         res.send("Error: " + err.message);
