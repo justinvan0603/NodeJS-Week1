@@ -66,7 +66,8 @@ app.use('/study',studyRouter);
 
 app.use('/login',loginRouter);
 
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 //app.use('/api/study',studyApiRouter);
 var GOOGLE_CLIENT_ID      = "391534551840-qi2p9he2al8i7ehvt5jid2b72paq4qkg.apps.googleusercontent.com"
