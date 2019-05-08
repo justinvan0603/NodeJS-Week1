@@ -27,6 +27,7 @@ router.get('/',function(req,res){
 /**
  * Get study by id
  * @route GET /study/{id}
+ * @path /{12321312}
  * @group Study - All operations about studies
  * @returns {object} 200 - An array of studies info
  * @returns {Error}  500 - Internal error
