@@ -56,13 +56,19 @@ router.post('/',function(req,res){
  */
 router.put('/:id', function(req, res){
     if(req.params.id){
-        Study.findOneAndUpdate(req.params.id,{name: req.body.name, description: req.body.description, researchers: req.body.reserachers}).then(rs=>{
-            res.status(200);
-            res.send("Updated")
-        }).catch(err => {
-            res.status(500);
-            res.send("Error: " + err.message);
+        Study.findOne(req.params.id).then(study =>{
+                study.researchers.remove();
+                Study.findOneAndUpdate(req.params.id,{name: req.body.name, description: req.body.description, researchers: req.body.reserachers}).then(rs=>{
+                    res.status(200);
+                    res.send("Updated")
+                }).catch(err => {
+                    res.status(500);
+                    res.send("Error: " + err.message);
+                });
+        }).catch(err=>{
+
         });
+        
     } else{
         res.status(400);
         res.send("Error: Invalid id");
