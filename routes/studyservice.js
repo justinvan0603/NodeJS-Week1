@@ -37,7 +37,7 @@ router.post('/',function(req,res){
     Study.create({name: req.body.name, description: req.body.description, researchers: req.body.reserachers}).then(rs =>{
         console.log(rs);
         res.status(200);
-        res.send("Done!");
+        res.send("Study created");
     }).catch(err=>{
         console.log(err);
         res.send("Error: " + err.message);
@@ -55,6 +55,7 @@ router.put('/:id', function(req, res){
     if(req.params.id){
         Study.findOneAndUpdate(req.params.id,{name: req.body.name, description: req.body.description,researchers: req.body.researchers}).then(rs=>{
             res.status(200);
+            res.send("Updated")
         }).catch(err => {
             res.status(500);
             res.send("Error: " + err.message);
@@ -77,6 +78,7 @@ router.delete('/:id',function(req,res){
         Study.findByIdAndRemove(req.params.id)
         .then(rs =>{
             res.status(200);
+            res.send("Deleted")
         }).catch(err =>{
             res.status(500);
             res.send("Error: " + err.message);
