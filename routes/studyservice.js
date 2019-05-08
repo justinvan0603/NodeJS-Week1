@@ -75,7 +75,7 @@ router.post('/',function(req,res){
  * @route PUT /study/{id}
  * @param {Integer} id - The id of the study 
  * @group Study - All operations about studies
- * @returns  200 - Successfully inserted
+ * @returns  200 - Successfully updated
  * @returns {Error}  500 - Internal error
  */
 router.put('/:id', function(req, res){
@@ -111,8 +111,8 @@ router.put('/:id', function(req, res){
  * @route DELETE /study/{id}
  * @param {Integer} id - The id of the study 
  * @group Study - All operations about studies
- * @returns  200 - Successfully inserted
- * @returns {Error}  default - Unexpected error
+ * @returns  200 - Successfully deleted
+ * @returns {Error}  500 - Internal error
  */
 router.delete('/:id',function(req,res){
     if(req.params.id){
