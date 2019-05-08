@@ -59,10 +59,12 @@ router.put('/:id', function(req, res){
         
         Study.findById(req.params.id).then(study =>{
             if(study.researchers)
+            {
                 study.researchers.remove();
+            }
                 study.researchers = req.body.researchers;
                 
-                Study.updateOne(study.researchers).then(rs=>{
+                Study.updateOne(study).then(rs=>{
                     res.status(200);
                     res.send("Updated")
                 }).catch(err => {
