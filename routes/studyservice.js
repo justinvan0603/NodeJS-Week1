@@ -66,7 +66,8 @@ router.put('/:id', function(req, res){
                     res.send("Error: " + err.message);
                 });
         }).catch(err=>{
-
+            res.status(500);
+            res.send("Error: " + err.message);
         });
         
     } else{
