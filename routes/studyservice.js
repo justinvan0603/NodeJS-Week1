@@ -32,9 +32,9 @@ router.get('/',function(req,res){
  * @returns {Error}  default - Unexpected error
  */
 router.post('/',function(req,res){
-    var listResearchers = [{name: "T"},{name: "A"}];
+    //var listResearchers = [{name: "T"},{name: "A"}];
     //res.send(JSON.stringify(listResearchers));
-    Study.create({name: req.body.name, description: req.body.description, researchers: listResearchers}).then(rs =>{
+    Study.create({name: req.body.name, description: req.body.description, researchers: req.body.reserachers}).then(rs =>{
         console.log(rs);
         res.status(200);
         res.send("Done!");
@@ -53,7 +53,7 @@ router.post('/',function(req,res){
  */
 router.put('/:id', function(req, res){
     if(req.params.id){
-        Study.findOneAndUpdate(req.params.id,{name: req.body.name, description: req.body.description}).then(rs=>{
+        Study.findOneAndUpdate(req.params.id,{name: req.body.name, description: req.body.description,researchers: req.body.researchers}).then(rs=>{
             res.status(200);
         }).catch(err => {
             res.status(500);
