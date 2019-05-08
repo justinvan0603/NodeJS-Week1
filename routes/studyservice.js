@@ -25,11 +25,34 @@ router.get('/',function(req,res){
     });
 });
 /**
+ * Get study by id
+ * @route GET /study/{id}
+ * @group Study - All operations about studies
+ * @returns {object} 200 - An array of studies info
+ * @returns {Error}  500 - Internal error
+ */
+
+router.get('/:id',function(req,res){
+    if(req.params.id){
+        Study.findById(req.params.id).then(result =>{
+            res.status(200);
+            res.json(result);
+        })
+        .catch(err=>{
+            res.status(500);
+            res.send("Error: " + err.message);
+        });
+    } else{
+        res.status(400);
+        res.send("Error: Invalid id");
+    }
+});
+/**
  * Create new study
  * @route POST /study/
  * @group Study - All operations about studies
  * @returns  200 - Successfully inserted
- * @returns {Error}  default - Unexpected error
+ * @returns {Error}  500 - Internal error
  */
 router.post('/',function(req,res){
     console.log(req.body.researchers);
@@ -43,6 +66,7 @@ router.post('/',function(req,res){
         res.send("Study created " + JSON.stringify(req.body.researchers));
     }).catch(err=>{
         console.log(err);
+        res.status(500);
         res.send("Error: " + err.message);
     });
 });
@@ -52,7 +76,7 @@ router.post('/',function(req,res){
  * @param {Integer} id - The id of the study 
  * @group Study - All operations about studies
  * @returns  200 - Successfully inserted
- * @returns {Error}  default - Unexpected error
+ * @returns {Error}  500 - Internal error
  */
 router.put('/:id', function(req, res){
     if(req.params.id){

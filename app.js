@@ -16,6 +16,8 @@ var studyRouter = require('./routes/studyservice');
 var studyApiRouter = require('./routes/api/study');
 
 var loginRouter = require('./routes/admin/login');
+
+var encryptRouter = require('./routes/encrypt');
 var app = express();
 //const swaggerDocument = require('./swagger.json');
 const expressSwagger = require('express-swagger-generator')(app);
@@ -66,6 +68,7 @@ app.use('/users', usersRouter);
 app.use('/study',studyRouter);
 
 app.use('/login',loginRouter);
+app.use('/encrypt',encryptRouter);
 
 passport.serializeUser(function(profile, done) {
   done(null, profile);
