@@ -60,6 +60,7 @@ router.put('/:id', function(req, res){
         Study.findById(req.params.id).then(study =>{
             if(study.researchers)
                 study.researchers.remove();
+                study.researchers = req.body.researchers;
                 Study.findOneAndUpdate(req.params.id,{name: req.body.name, description: req.body.description, researchers: req.body.reserachers}).then(rs=>{
                     res.status(200);
                     res.send("Updated")
