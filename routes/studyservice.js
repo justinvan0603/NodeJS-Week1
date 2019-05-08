@@ -33,6 +33,7 @@ router.get('/',function(req,res){
  */
 router.post('/',function(req,res){
     var listResearchers = JSON.parse(req.body.researchers);
+    console.log(listResearchers);
     //var listResearchers = [{name: "T"},{name: "A"}];
     //res.send(JSON.stringify(listResearchers));
     Study.create({name: req.body.name, description: req.body.description, researchers: listResearchers}).then(rs =>{
