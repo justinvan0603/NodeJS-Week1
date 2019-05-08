@@ -58,6 +58,7 @@ router.put('/:id', function(req, res){
     if(req.params.id){
         
         Study.findById(req.params.id).then(study =>{
+            if(study.researchers)
                 study.researchers.remove();
                 Study.findOneAndUpdate(req.params.id,{name: req.body.name, description: req.body.description, researchers: req.body.reserachers}).then(rs=>{
                     res.status(200);
