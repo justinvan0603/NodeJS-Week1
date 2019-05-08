@@ -4,15 +4,7 @@ var cryptor = require('../cryptor/cryptor');
 var passport = require("passport");
 var dtofactory = require("../dto/dtofactory");
 /* GET home page. */
-/**
- * This function comment is parsed by doctrine
- * @route GET /api
- * @group foo - Operations about user
- * @param {string} email.query.required - username or email - eg: user@domain
- * @param {string} password.query.required - user's password.
- * @returns {object} 200 - An array of user info
- * @returns {Error}  default - Unexpected error
- */
+
 router.get('/', function(req, res, next) {
 
   // var publickey = `-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJTSChtSwc2PqTFSskRqd50jYJv\nN9diK\n+pUajbwLYSx3/H3tTbazrvC3NGwMzl44qjssjjzLuvVKg0MPe1LVfxkCAwEAAQ==\n-----END PUBLIC KEY-----`;

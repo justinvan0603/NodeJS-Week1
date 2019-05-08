@@ -29,7 +29,7 @@ let options = {
           version: '1.0.0',
       },
       host: 'localhost:3000',
-      basePath: '/v1',
+      basePath: '',
       produces: [
           "application/json"
       ],
