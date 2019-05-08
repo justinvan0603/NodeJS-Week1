@@ -63,7 +63,8 @@ router.put('/:id', function(req, res){
                 study.researchers.remove();
             }
                 study.researchers = req.body.researchers;
-                
+                study.name = req.body.name;
+                study.description = req.body.description;
                 Study.updateOne(study).then(rs=>{
                     res.status(200);
                     res.send("Updated")
