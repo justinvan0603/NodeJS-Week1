@@ -34,7 +34,7 @@ router.get('/',function(req,res){
 router.post('/',function(req,res){
     //var listResearchers = [{name: "T"},{name: "A"}];
     //res.send(JSON.stringify(listResearchers));
-    Study.create({name: req.body.name, description: req.body.description, researchers: JSON.stringify(req.body.reserachers)}).then(rs =>{
+    Study.create({name: req.body.name, description: req.body.description, researchers: JSON.parse(req.body.reserachers)}).then(rs =>{
         console.log(rs);
         res.status(200);
         res.send("Study created");
