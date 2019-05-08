@@ -40,4 +40,7 @@ router.get('/', function(req, res, next) {
   //console.log(JSON.stringify(dtofactory.getStudyDto("Survey","This is a static",[{question: "Q1", choice:["A","B"]}])));
   res.render('index', { title: 'Express' });
 });
+router.get('/dashboard', function(req, res, next) {
+  res.render('dashboard', { title: 'Dashboard' });
+});
 module.exports = router;
