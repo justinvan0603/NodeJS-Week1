@@ -34,10 +34,11 @@ router.get('/',function(req,res){
 router.post('/',function(req,res){
     //var listResearchers = [{name: "T"},{name: "A"}];
     //res.send(JSON.stringify(listResearchers));
-    Study.create({name: req.body.name, description: req.body.description, researchers: JSON.stringify(req.body.reserachers)}).then(rs =>{
+    var listResearchers = JSON.parse(req.body.researchers);
+    Study.create({name: req.body.name, description: req.body.description, researchers: listResearchers).then(rs =>{
         console.log(rs);
         res.status(200);
-        res.send("Study created " + JSON.stringify(req.body.researchers));
+        res.send("Study created " +listResearchers);
     }).catch(err=>{
         console.log(err);
         res.send("Error: " + err.message);
