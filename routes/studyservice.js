@@ -32,19 +32,19 @@ router.get('/',function(req,res){
  * @returns {Error}  default - Unexpected error
  */
 router.post('/',function(req,res){
-    console.log(JSON.parse(req.body.researchers));
+    console.log(req.body.researchers);
     //var listResearchers = JSON.stringify(req.body.researchers);
     //console.log(listResearchers);
-    var listResearchers = [{name: "T"},{name: "A"}];
-    //res.send(JSON.stringify(listResearchers));
-    Study.create({name: req.body.name, description: req.body.description, researchers: listResearchers}).then(rs =>{
-        console.log(rs);
-        res.status(200);
-        res.send("Study created " + JSON.stringify(req.body.researchers));
-    }).catch(err=>{
-        console.log(err);
-        res.send("Error: " + err.message);
-    });
+    // var listResearchers = [{name: "T"},{name: "A"}];
+    // //res.send(JSON.stringify(listResearchers));
+    // Study.create({name: req.body.name, description: req.body.description, researchers: listResearchers}).then(rs =>{
+    //     console.log(rs);
+    //     res.status(200);
+    //     res.send("Study created " + JSON.stringify(req.body.researchers));
+    // }).catch(err=>{
+    //     console.log(err);
+    //     res.send("Error: " + err.message);
+    // });
 });
 /**
  * Update new study
